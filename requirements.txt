@@ -1,0 +1,11 @@
+streamlit
+llama-index
+llama-index-llms-nvidia
+llama-index-embeddings-nvidia
+llama-parse
+python-dotenv
+nest-asyncio
+uvicorn
+fastapi
+pydantic
+
