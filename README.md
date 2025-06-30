@@ -9,8 +9,11 @@ Users can ask questions about company IT policies, installation guides, support 
 
 .
 ├── agent.py # Builds LlamaIndex indexes, tools & ReAct agent
+
 ├── streamlit_app.py # Streamlit front-end with memory and chat UI
+
 ├── fast_api.py # FastAPI wrapper exposing /chat endpoint
+
 ├── docs/
 │ ├── company_it_policies.pdf
 │ ├── installation_guides.pdf
