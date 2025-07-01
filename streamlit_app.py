@@ -64,11 +64,7 @@ with st.sidebar:
     - **Knowledge Base**  
     - **Troubleshooting Flows**  
     """)
-    if st.button("Clear Chat History"):
-        st.session_state.messages = []
-        st.session_state.memory = Memory.from_defaults(token_limit=30000)
-        agent.memory = st.session_state.memory
-        st.experimental_rerun()
+
 
 
 st.markdown("---")
