@@ -9,7 +9,7 @@ import os
 import nest_asyncio
 from dotenv import load_dotenv
 
-# Apply nest_asyncio and load environment variables
+# Applying nest_asyncio and load environment variables
 nest_asyncio.apply()
 load_dotenv()
 
@@ -19,16 +19,16 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# Add CORS middleware to allow cross-origin requests
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # In production, replace with specific origins
+    allow_origins=["*"],  
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# In-memory session storage (in production, use Redis or database)
+
 sessions: Dict[str, Dict] = {}
 
 class ChatMessage(BaseModel):
@@ -103,12 +103,12 @@ async def delete_session(session_id: str):
 async def chat_with_agent(chat_message: ChatMessage):
     """Send a message to the IT support agent"""
     try:
-        # Handle session management
+        
         if chat_message.session_id and chat_message.session_id in sessions:
             session_id = chat_message.session_id
             session = sessions[session_id]
         else:
-            # Create new session if none provided or session doesn't exist
+           
             session_id = str(uuid.uuid4())
             sessions[session_id] = {
                 "name": "Auto-created Session",
@@ -119,17 +119,17 @@ async def chat_with_agent(chat_message: ChatMessage):
             }
             session = sessions[session_id]
         
-        # Add user message to session
+        
         session["messages"].append({"role": "user", "content": chat_message.message})
         
-        # Set agent memory to session memory
+      
         agent.memory = session["memory"]
         
-        # Get response from agent
+       
         response = agent.chat(chat_message.message)
         agent_response = response.response if hasattr(response, "response") else str(response)
         
-        # Add agent response to session
+        
         session["messages"].append({"role": "assistant", "content": agent_response})
         
         return ChatResponse(response=agent_response, session_id=session_id)
