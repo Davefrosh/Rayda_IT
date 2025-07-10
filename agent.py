@@ -253,7 +253,7 @@ agent = ReActAgent.from_tools(
     max_iterations=60
 )
 
-# attach memory so multi‐turn works
+
 agent.memory = Memory.from_defaults(token_limit=30000)
 
 def get_agent_response_sync(user_message: str) -> str:
